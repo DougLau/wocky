@@ -3382,6 +3382,7 @@ antimagnetic:A
 antimalarial:N
 antimatter:N
 antimeson:N
+antimetabole:N
 antimetabolite:N
 antimicrobial:A
 antimicrobial:N
@@ -7015,6 +7016,7 @@ betroth:V
 betrothal:N
 betrothed:A
 betrothed:N
+betrump:V
 better:Av
 better:N
 better:V
@@ -12155,6 +12157,7 @@ chiasmal:A
 chiasmatic:A
 chiasmic:A
 chiasmus:N
+chiastic:A
 chic:A.c
 chic:N
 chicane:N
@@ -15740,6 +15743,8 @@ cosey:N
 cosh:N
 cosh:V
 cosher:A
+cosher:V
+cosherer:N
 cosign:V
 cosignatory:A
 cosignatory:N
@@ -21498,6 +21503,7 @@ dumfounding:A
 dummy:A.c
 dummy:N
 dummy:V
+dummymander:N
 dump:N
 dump:V
 dumpcart:N
@@ -24056,6 +24062,7 @@ exceptional:A
 exceptionalism:N
 exceptionalist:N
 exceptionally:Av
+excerebrose:A
 excerpt:N
 excerpt:V
 excess:A
@@ -24264,6 +24271,8 @@ exonerative:A
 exonuclease:N
 exophthalmos:N
 exoplanet:N
+exorability:N
+exorable:A
 exorbitance:N
 exorbitant:A
 exorbitantly:Av
@@ -26208,6 +26217,7 @@ flextime:N
 flexuous:A
 flexure:N
 flibbertigibbet:N
+flibbertigibbety:A
 flick:N
 flick:V
 flicker:N
@@ -26936,6 +26946,7 @@ forsaking:N
 forsooth:Av
 forswear:V,-rs,-ring,-wore,-worn
 forswearing:N
+forswunk:A
 forsythia:N
 fort:N
 fort:V
@@ -27864,6 +27875,7 @@ galoot:N
 galore:A
 galosh:N
 galumph:V
+galumphing:A
 galvanic:A
 galvanism:N
 galvanization:N.z
@@ -32443,6 +32455,7 @@ howler:N
 howling:A
 howling:N
 howsoever:Av
+hoy:I
 hoy:N
 hoya:N
 hoyden:A
@@ -33886,7 +33899,6 @@ inadvertently:Av
 inadvisability:N
 inadvisable:A
 inadvisably:Av
-inaesthetic:A
 inaffable:A
 inalienability:N
 inalienable:A
@@ -35861,6 +35873,7 @@ inwards:Av
 inwards:P
 inweave:V,-es,-ving,-ed,inwove,inwoven
 inwrought:A
+inæsthetic:A
 iodide:N
 iodin:N
 iodinate:V
@@ -37103,10 +37116,6 @@ kimono:N
 kin:A
 kin:N
 kina:N
-kinaesthesia:N
-kinaesthesis:N
-kinaesthetic:A
-kinaesthetically:Av
 kinanesthesia:N
 kinase:N
 kind:A.c
@@ -37173,6 +37182,10 @@ kinship:N
 kinsman:N,-men
 kinsperson:N,-eople,-ns
 kinswoman:N,-men
+kinæsthesia:N
+kinæsthesis:N
+kinæsthetic:A
+kinæsthetically:Av
 kiosk:N
 kip:N
 kip:V
@@ -37992,6 +38005,7 @@ law:N
 lawbreaker:N
 lawbreaking:A
 lawcourt:N
+lawfare:N
 lawful:A
 lawfully:Av
 lawfulness:N
@@ -38937,6 +38951,7 @@ listening:N
 lister:N
 listeria:N
 listeriosis:N
+listicle:N
 listing:N
 listless:A
 listlessly:Av
@@ -39355,6 +39370,7 @@ looting:N
 lop:V
 lope:N
 lope:V
+loper:N
 lopped:A
 lopper:N
 lopsided:A
@@ -40390,6 +40406,7 @@ mantlepiece:N
 mantlet:N
 mantra:N
 mantrap:N
+mantrum:N
 mantua:N
 manual:A
 manual:N
@@ -44205,7 +44222,9 @@ nebbish:N
 nebuchadnezzar:N
 nebula:N,-læ,-ae,-as
 nebular:A
+nebulochaotic:A
 nebulose:A
+nebulosity:N
 nebulous:A
 nebulously:Av
 nebulousness:N
@@ -46569,6 +46588,7 @@ onyx:N
 onyxis:N
 oocyte:N
 oodle:N
+oof:I
 oogenesis:N
 ooh:I
 oolong:N
@@ -50437,6 +50457,7 @@ pigmy:N
 pignolia:N
 pignut:N
 pigpen:N
+pigritude:N
 pigskin:N
 pigsticking:N
 pigsty:N
@@ -54283,6 +54304,8 @@ quadruplicate:V
 quadruplication:N
 quadrupling:N
 quaestor:N
+quaestuary:A
+quaestuary:N
 quaff:N
 quaff:V
 quaffer:N
@@ -58559,6 +58582,8 @@ sangria:N
 sanguification:N
 sanguinary:A
 sanguine:A
+sanguine:N
+sanguinely:Av
 sanguineness:N
 sanguineous:A
 sanguinity:N
@@ -58852,6 +58877,7 @@ scabiosa:N
 scabious:N
 scabrous:A
 scad:N
+scaevity:N
 scaffold:N
 scaffold:V
 scaffolding:N
@@ -60366,6 +60392,7 @@ shabby:A.c
 shabu:N
 shack:N
 shack:V
+shacket:N
 shackle:N
 shackle:V
 shackled:A
@@ -64272,6 +64299,8 @@ stave:N
 stave:V
 stay:N
 stay:V
+staycation:N
+staycationer:N
 stayer:N
 staysail:N
 stead:N
@@ -70788,7 +70817,6 @@ unadvisable:A
 unadvised:A
 unadvisedly:Av
 unaerated:A
-unaesthetic:A
 unaffected:A
 unaffectedly:Av
 unaffectedness:N
@@ -73287,9 +73315,11 @@ unwrapped:A
 unwrinkled:A
 unwritten:A
 unyielding:A
+unyieldingly:Av
 unyieldingness:N
 unyoke:V
 unzip:V
+unæsthetic:A
 up:A
 up:Av
 up:P
@@ -76728,8 +76758,8 @@ yield:N
 yield:V
 yielder:N
 yielding:A
-yielding:N
 yieldingly:Av
+yieldingness:N
 yikes:I
 yin:N
 yip:V,yips,yipping,yipped
@@ -76956,6 +76986,7 @@ zoophytic:A
 zooplankton:N
 zoopsia:N
 zoospore:N
+zooted:A
 zootoxin:N
 zori:N
 zoril:N
