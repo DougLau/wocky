@@ -1,7 +1,7 @@
 /// Find nouns with both singular and plural entries
 use anyhow::Result;
-use booky::lex::{self, Lexicon};
-use booky::word::{Lexeme, WordClass};
+use wocky::lex::{self, Lexicon};
+use wocky::word::{Lexeme, WordClass};
 
 fn main() -> Result<()> {
     let lex = lex::builtin();

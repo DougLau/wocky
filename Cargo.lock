@@ -41,18 +41,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "booky"
-version = "0.8.0"
-dependencies = [
- "anyhow",
- "argh",
- "deunicode",
- "fastrand",
- "html-escape",
- "yansi",
-]
-
-[[package]]
 name = "deunicode"
 version = "1.6.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -139,6 +127,18 @@ name = "utf8-width"
 version = "0.1.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "86bd8d4e895da8537e5315b8254664e6b769c4ff3db18321b297a1e7004392e3"
+
+[[package]]
+name = "wocky"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "argh",
+ "deunicode",
+ "fastrand",
+ "html-escape",
+ "yansi",
+]
 
 [[package]]
 name = "yansi"

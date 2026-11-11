@@ -1,10 +1,10 @@
 use anyhow::{Result, bail};
 use argh::FromArgs;
-use booky::hilite;
-use booky::kind::Kind;
-use booky::lex;
-use booky::tally::WordTally;
-use booky::word::{Lexeme, WordClass};
+use wocky::hilite;
+use wocky::kind::Kind;
+use wocky::lex;
+use wocky::tally::WordTally;
+use wocky::word::{Lexeme, WordClass};
 use std::io::{IsTerminal, stdin};
 use yansi::{Paint, Style};
 
@@ -270,7 +270,7 @@ fn main() -> Result<()> {
         Some(SubCommand::Word(cmd)) => cmd.run()?,
         Some(SubCommand::Nonsense(_)) => nonsense(),
         None => {
-            if let Err(e) = Args::from_args(&["booky"], &["--help"]) {
+            if let Err(e) = Args::from_args(&["wocky"], &["--help"]) {
                 eprintln!("{}", e.output);
             }
         }

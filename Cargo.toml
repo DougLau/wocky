@@ -1,15 +1,15 @@
 [package]
-name = "booky"
-description = "A tool to analyze English text"
+name = "wocky"
+description = "A tool to analyze and generate text"
 license = "MIT OR Apache-2.0"
-documentation = "https://docs.rs/booky"
+documentation = "https://docs.rs/wocky"
 keywords = ["text", "english", "lexicon"]
 categories = ["text-processing", "command-line-utilities"]
-repository = "https://github.com/DougLau/booky/"
+repository = "https://github.com/DougLau/wocky/"
 readme = "README.md"
-version = "0.8.0"
+version = "0.1.0"
 edition = "2024"
-default-run = "booky"
+default-run = "wocky"
 
 [dependencies]
 anyhow = "1.0"
@@ -22,5 +22,5 @@ yansi = "1.0"
 html-escape = "0.2.13"
 
 [[bin]]
-name = "booky"
-path = "src/bin/booky.rs"
+name = "wocky"
+path = "src/bin/wocky.rs"

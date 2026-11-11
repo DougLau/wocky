@@ -1,8 +1,8 @@
-A tool to analyze English text
+A tool to analyze and generate text
 
 Installation:
 ```shell
-cargo install booky
+cargo install wocky
 ```
 
 ### Lexicon
@@ -33,7 +33,7 @@ The `read` sub-command reads UTF-8 text from `stdin`, which can be redirected
 from a file.  With no additional options, a summary of token kinds is listed:
 
 ```
-> booky read < Dr_Jeckyll_And_Mr_Hyde.txt
+> wocky read < Dr_Jeckyll_And_Mr_Hyde.txt
 
  3915 l Lexicon
     1 f Foreign
