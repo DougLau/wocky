@@ -22,7 +22,7 @@ enum SubCommand {
     Hilite(HiliteCmd),
     Read(ReadCmd),
     Word(WordCmd),
-    Nonsense(Nonsense),
+    Jabber(Jabber),
 }
 
 /// Hilight text from stdin
@@ -63,10 +63,10 @@ struct WordCmd {
     word: Option<String>,
 }
 
-/// Generate nonsense text
+/// Generate jabber (nonsense) text
 #[derive(FromArgs, Debug, PartialEq)]
-#[argh(subcommand, name = "nonsense")]
-struct Nonsense {}
+#[argh(subcommand, name = "jabber")]
+struct Jabber {}
 
 impl HiliteCmd {
     /// Run command
@@ -247,8 +247,8 @@ fn choose_word<'a>(words: &[&'a Lexeme]) -> &'a Lexeme {
     words.get(n).unwrap()
 }
 
-/// Print nonsense
-fn nonsense() {
+/// Print jabber (nonsense)
+fn jabber() {
     let nouns: Vec<_> = lex::builtin()
         .iter()
         .filter(|w| w.word_class() == WordClass::Noun)
@@ -268,7 +268,7 @@ fn main() -> Result<()> {
         Some(SubCommand::Hilite(cmd)) => cmd.run()?,
         Some(SubCommand::Read(cmd)) => cmd.run()?,
         Some(SubCommand::Word(cmd)) => cmd.run()?,
-        Some(SubCommand::Nonsense(_)) => nonsense(),
+        Some(SubCommand::Jabber(_)) => jabber(),
         None => {
             if let Err(e) = Args::from_args(&["wocky"], &["--help"]) {
                 eprintln!("{}", e.output);
