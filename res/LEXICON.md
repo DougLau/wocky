@@ -4,7 +4,7 @@ The lexicon `english.csv` uses a variation of the comma separated value (CSV)
 format.  Each line contains one **lexeme**:
 
 * Value 1: **lemma** : **word class** {.**attributes**}
-* Values 2+: **irregular inflected forms**
+* Values 2+: **irregular inflected forms** and **alternate spellings**
 
 Example:
 

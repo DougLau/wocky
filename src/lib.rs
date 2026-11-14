@@ -1,3 +1,4 @@
+pub mod argot;
 mod contractions;
 pub mod hilite;
 pub mod kind;

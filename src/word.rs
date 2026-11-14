@@ -1,3 +1,4 @@
+use crate::argot::Argot;
 use deunicode::deunicode_char;
 use std::fmt;
 
@@ -47,6 +48,8 @@ pub enum WordAttr {
 /// Word Lexeme
 #[derive(Clone, Eq, Hash, Ord, PartialEq, PartialOrd)]
 pub struct Lexeme {
+    /// Argot (dialect/jargon)
+    argot: Option<Argot>,
     /// Lemma word form
     lemma: String,
     /// Word class
@@ -154,6 +157,7 @@ impl TryFrom<&str> for Lexeme {
         }
         let forms = Vec::new();
         let mut word = Lexeme {
+            argot: None,
             lemma,
             word_class,
             attr,
@@ -244,6 +248,16 @@ impl fmt::Display for Lexeme {
 }
 
 impl Lexeme {
+    /// Set the argot
+    pub fn with_argot(&mut self, argot: Option<Argot>) {
+        self.argot = argot;
+    }
+
+    /// Get the argot
+    pub fn argot(&self) -> Option<Argot> {
+        self.argot
+    }
+
     /// Get lemma as a string slice
     pub fn lemma(&self) -> &str {
         &self.lemma

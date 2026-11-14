@@ -1,11 +1,11 @@
 use anyhow::{Result, bail};
 use argh::FromArgs;
+use std::io::{IsTerminal, stdin};
 use wocky::hilite;
 use wocky::kind::Kind;
 use wocky::lex;
 use wocky::tally::WordTally;
 use wocky::word::{Lexeme, WordClass};
-use std::io::{IsTerminal, stdin};
 use yansi::{Paint, Style};
 
 /// Command-line arguments

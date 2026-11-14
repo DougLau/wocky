@@ -10,7 +10,10 @@ fn make_builtin() -> Lexicon {
     let mut lex = Lexicon::default();
     for (i, line) in include_str!("../res/english.csv").lines().enumerate() {
         match Lexeme::try_from(line) {
-            Ok(word) => lex.insert(word),
+            Ok(word) => {
+                // FIXME: set the argot
+                lex.insert(word);
+            }
             Err(_) => panic!("Bad word on line {}: `{line}`", i + 1),
         }
     }
