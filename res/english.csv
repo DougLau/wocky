@@ -6569,6 +6569,7 @@ bedlamite:N
 bedless:A
 bedpan:N
 bedpost:N
+bedquilt:N
 bedraggle:V
 bedraggled:A
 bedrest:N
@@ -9065,6 +9066,7 @@ briber:N
 bribery:N
 bric-a-brac:N
 brick:N
+brick:V
 brickbat:N
 brickbatting:N
 brickfield:N
@@ -10351,7 +10353,8 @@ campylotropous:A
 camshaft:N
 camwood:N
 can:N
-can:V,could,canst
+can:V,canned,canning
+can:V,could,canst,couldst
 canafistola:N
 canafistula:N
 canal:N
@@ -10499,8 +10502,7 @@ cant:N
 cant:V
 cantabile:A
 cantala:N
-cantaloup:N
-cantaloupe:N
+cantaloup:N,-ps,-pe,-pes
 cantankerous:A
 cantankerously:Av
 cantankerousness:N
@@ -12292,6 +12294,9 @@ chipolata:N
 chipotle:N
 chipped:A
 chipper:A
+chipper:N
+chipper:V
+chipperness:N
 chippie:N
 chipping:N
 chippy:A.c
@@ -17536,6 +17541,7 @@ damsel:N
 damselfish:N
 damselfly:N
 damson:N
+dan:N
 danaid:N
 dance:N
 dance:V
@@ -21173,6 +21179,7 @@ drawknife:N,-ives
 drawl:N
 drawl:V
 drawler:N
+drawly:A.c
 drawn:A
 drawnwork:N
 drawshave:N
@@ -21387,7 +21394,7 @@ drunkenness:N
 drupaceous:A
 drupe:N
 drupelet:N
-druthers:N.p
+druther:N
 dry:A.c
 dry:N,drys
 dry:V
@@ -28583,8 +28590,8 @@ gilt:N
 gimbal:N
 gimbal:V,-ls,-ling,-lling,-led,-lled
 gimbaled:A
-gimcrack:A
-gimcrack:N
+gimcrack:A,jimcrack
+gimcrack:N,-ks,jimcrack,jimcracks
 gimcrackery:N
 gimel:N
 gimlet:N
@@ -36244,6 +36251,7 @@ jackrabbit:N
 jackscrew:N
 jacksmelt:N
 jacksnipe:N
+jackstaff:N
 jackstone:N
 jackstraw:N
 jaconet:N
@@ -46933,7 +46941,7 @@ ornate:A
 ornately:Av
 ornateness:N
 orneriness:N
-ornery:A
+ornery:A.c
 ornithine:N
 ornithischian:N
 ornithological:A
@@ -50749,6 +50757,7 @@ pitiable:A
 pitiably:Av
 pitiful:A
 pitifully:Av
+pitifulness:N
 pitiless:A
 pitilessly:Av
 pitilessness:N
@@ -53906,6 +53915,7 @@ pungapung:N
 pungency:N
 pungent:A
 pungently:Av
+pungle:V
 punic:A
 punily:Av
 puniness:N
@@ -62579,6 +62589,7 @@ sociopathy:N
 sociopolitical:A
 sock:N
 sock:V
+sockdolager:N,-rs,-loger,-logers
 socket:N
 sockeye:N
 socle:N
@@ -63654,6 +63665,7 @@ spoliation:N
 spondaic:A
 spondaize:V.z
 spondee:N
+spondulicks:N.p,-ix
 spondylarthritis:N
 spondylitis:N
 spondylolisthesis:N
@@ -65184,6 +65196,7 @@ stupid:A.c,-der,-dest
 stupid:N
 stupidity:N
 stupidly:Av
+stupidness:N
 stupor:N
 stuporous:A
 sturdily:Av
@@ -69375,6 +69388,7 @@ trammel:V,-ls,-ling,-lling,-led,-lled
 tramontana:N
 tramontane:A
 tramontane:N
+tramp:A
 tramp:N
 tramp:V
 tramper:N
@@ -69384,6 +69398,7 @@ trampled:A
 trampler:N
 trampling:N
 trampoline:N
+trampy:A
 tramway:N
 trance:N
 trance:V
@@ -71142,6 +71157,8 @@ uncluttered:A
 unco:A
 unco:Av
 uncoated:A
+uncock:V
+uncocked:A
 uncoerced:A
 uncoil:V
 uncoiled:A
@@ -71584,6 +71601,7 @@ undiagnosed:A
 undies:N.p
 undifferentiated:A
 undigested:A
+undigestible:A
 undignified:A
 undiluted:A
 undiminished:A
@@ -71603,6 +71621,7 @@ undiscovered:A
 undiscriminating:A
 undisguised:A
 undismayed:A
+undisposed:A
 undisputable:A
 undisputed:A
 undisputedly:Av
