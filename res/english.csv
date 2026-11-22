@@ -9,6 +9,8 @@ Antarctic:A
 April:N.n,-ls,Apr
 Armageddon:N.n
 Asia:N.n
+Asian:A
+Asian:N
 Atlantic:A
 August:N.n,-ts,Aug
 Australia:N.n
@@ -38,6 +40,11 @@ German:N
 Hallowe'en:N.n
 Halloween:N.n
 Herculean:A
+Hispanic:A
+Hispanic:N
+Hispanicism:N
+Hispanicist:N
+Hispanicize:V.z
 I:Pn
 Indian:N.n
 January:N.n,-ys,Jan
@@ -4163,6 +4170,7 @@ argentine:N
 argentinosaur:N
 argentite:N
 argentous:A
+argentum:N
 argh:I,aargh
 argil:N
 argillaceous:A
@@ -32995,6 +33003,8 @@ hypersensitized:A.z
 hypersexual:A
 hypersexuality:N
 hypersomnia:N
+hypersonic:A
+hypersonically:Av
 hyperspace:N
 hypersplenism:N
 hypertension:N
@@ -49294,6 +49304,7 @@ pencil:N
 pencil:V
 penciled:A
 pencilled:A
+penciller:N
 pend:V
 pendant:N
 pendent:A
@@ -54816,6 +54827,7 @@ radiophoto:N
 radiophotograph:N
 radiophotography:N
 radioprotection:N
+radioscope:N
 radioscopy:N
 radiosensitive:A
 radiosensitivity:N
@@ -60015,6 +60027,8 @@ semihard:A
 semiliquid:A
 semiliterate:A
 semilunar:A
+semimajor:A
+semiminor:A
 semimonthly:A
 semimonthly:Av
 seminal:A
@@ -75494,12 +75508,11 @@ weightlifting:N
 weighty:A.c
 weir:N
 weird:A.c
-weirdie:N
+weirdie:N,-es,-dy
 weirdly:Av
 weirdness:N
 weirdo:A
 weirdo:N
-weirdy:N
 weisenheimer:N
 weka:N
 welcher:N
