@@ -20,9 +20,8 @@ fn main() -> Result<()> {
 }
 
 /// Non-closing entities (also comments)
-const NON_CLOSING: &[&str] = &[
-    "!--", "br", "img", "input", "link", "meta", "source", "path", "circle",
-];
+const NON_CLOSING: &[&str] =
+    &["!--", "br", "wbr", "img", "input", "link", "meta", "source"];
 
 /// Non-displayed entity names
 const NON_DISPLAYED: &[&str] = &[
@@ -77,23 +76,25 @@ impl Content {
             if let Some(b'<') = self.buf.pop() {
                 self.handle_content();
                 self.buf.clear();
+                // FIXME: '>' can also be in quoted strings
                 if reader.read_until(b'>', &mut self.buf)? == 0 {
                     break;
                 }
                 if let Some(b'>') = self.buf.pop() {
                     if let Ok(text) = str::from_utf8(&self.buf) {
                         let mut parts = text.trim().split_whitespace();
-                        if let Some(mut elem) = parts.next() {
-                            if elem.starts_with("!--") {
-                                elem = "!--";
-                            }
-                            if NON_CLOSING.contains(&elem) {
+                        if let Some(elem) = parts.next() {
+                            if elem.ends_with('/')
+                                || NON_CLOSING
+                                    .iter()
+                                    .any(|tag| elem.starts_with(tag))
+                            {
                                 continue;
                             }
                             if elem.starts_with('/') {
-                                if let Some((oelem, _d)) = self.stack.pop() {
-                                    if elem[1..] != oelem {
-                                        eprintln!("tag: {elem} != {oelem}");
+                                if let Some((pe, _d)) = self.stack.pop() {
+                                    if elem[1..] != pe {
+                                        eprintln!("tag: {elem} != {pe}");
                                     }
                                 } else {
                                     eprintln!("stack empty!");
