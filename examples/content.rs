@@ -4,23 +4,28 @@ use core::str;
 use html_escape::decode_html_entities;
 use std::io::{BufRead, stdin};
 
+/// HTML content parser
 struct Content {
     /// read buffer
     buf: Vec<u8>,
-    /// DOM element stack display bool
-    stack: Vec<bool>,
+    /// DOM element stack (element ID, display)
+    stack: Vec<(String, bool)>,
 }
 
+/// Main entry point
 fn main() -> Result<()> {
     let mut content = Content::new();
     content.parse(stdin().lock())?;
     Ok(())
 }
 
-const NON_CLOSING: &[&str] = &["!--", "img", "input", "link", "meta", "source"];
+/// Non-closing entities (also comments)
+const NON_CLOSING: &[&str] = &[
+    "!--", "br", "img", "input", "link", "meta", "source", "path", "circle",
+];
 
+/// Non-displayed entity names
 const NON_DISPLAYED: &[&str] = &[
-    "a",
     "annotation",
     "figure",
     "footer",
@@ -34,6 +39,7 @@ const NON_DISPLAYED: &[&str] = &[
 ];
 
 impl Content {
+    /// Create a new HTML content parser
     fn new() -> Self {
         Content {
             buf: Vec::with_capacity(4096),
@@ -41,10 +47,12 @@ impl Content {
         }
     }
 
+    /// Is content is currently displayed?
     fn is_content_displayed(&self) -> bool {
-        !self.stack.iter().any(|d| !d)
+        !self.stack.iter().any(|(_, d)| !d)
     }
 
+    /// Handle content
     fn handle_content(&self) {
         if self.is_content_displayed() {
             if let Ok(text) = str::from_utf8(&self.buf) {
@@ -56,6 +64,7 @@ impl Content {
         }
     }
 
+    /// Parse HTML from a reader
     fn parse<R>(&mut self, mut reader: R) -> Result<()>
     where
         R: BufRead,
@@ -74,16 +83,26 @@ impl Content {
                 if let Some(b'>') = self.buf.pop() {
                     if let Ok(text) = str::from_utf8(&self.buf) {
                         let mut parts = text.trim().split_whitespace();
-                        if let Some(elem) = parts.next() {
+                        if let Some(mut elem) = parts.next() {
+                            if elem.starts_with("!--") {
+                                elem = "!--";
+                            }
                             if NON_CLOSING.contains(&elem) {
                                 continue;
                             }
                             if elem.starts_with('/') {
-                                self.stack.pop();
+                                if let Some((oelem, _d)) = self.stack.pop() {
+                                    if elem[1..] != oelem {
+                                        eprintln!("tag: {elem} != {oelem}");
+                                    }
+                                } else {
+                                    eprintln!("stack empty!");
+                                }
                             } else {
                                 let displayed = !NON_DISPLAYED.contains(&elem);
                                 let hidden = parts.any(is_class_hidden);
-                                self.stack.push(displayed && !hidden);
+                                let display = displayed && !hidden;
+                                self.stack.push((elem.to_string(), display));
                             }
                         }
                     }
@@ -94,6 +113,7 @@ impl Content {
     }
 }
 
+/// Check if an HTML entity is hidden, based on class name (Wikipedia)
 fn is_class_hidden(part: &str) -> bool {
     part.starts_with("class") && {
         part.contains("catlinks")
@@ -101,5 +121,8 @@ fn is_class_hidden(part: &str) -> bool {
             || part.contains("infobox")
             || part.contains("vector-menu")
             || part.contains("references")
+            || part.contains("printfooter")
+            || part.contains("mw-reflink-text")
+            || part.contains("mw-editsection")
     }
 }
