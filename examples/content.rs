@@ -5,16 +5,14 @@ use html_escape::decode_html_entities;
 use std::io::{BufRead, stdin};
 
 /// HTML content parser
-struct Content {
-    /// read buffer
-    buf: Vec<u8>,
+struct Parser {
     /// DOM element stack (element ID, display)
     stack: Vec<(String, bool)>,
 }
 
 /// Main entry point
 fn main() -> Result<()> {
-    let mut content = Content::new();
+    let mut content = Parser::new();
     content.parse(stdin().lock())?;
     Ok(())
 }
@@ -37,13 +35,10 @@ const NON_DISPLAYED: &[&str] = &[
     "style",
 ];
 
-impl Content {
+impl Parser {
     /// Create a new HTML content parser
     fn new() -> Self {
-        Content {
-            buf: Vec::with_capacity(4096),
-            stack: Vec::new(),
-        }
+        Parser { stack: Vec::new() }
     }
 
     /// Is content is currently displayed?
@@ -51,66 +46,105 @@ impl Content {
         !self.stack.iter().any(|(_, d)| !d)
     }
 
-    /// Handle content
-    fn handle_content(&self) {
-        if self.is_content_displayed() {
-            if let Ok(text) = str::from_utf8(&self.buf) {
-                let text = text.trim();
-                if !text.is_empty() {
-                    println!("{}", decode_html_entities(text));
-                }
-            }
-        }
-    }
-
-    /// Parse HTML from a reader
+    /// Parse HTML
     fn parse<R>(&mut self, mut reader: R) -> Result<()>
     where
         R: BufRead,
     {
+        let mut bytes = [0; 1];
+        let mut buf = Vec::with_capacity(256);
+        let mut quote = None;
         loop {
-            self.buf.clear();
-            if reader.read_until(b'<', &mut self.buf)? == 0 {
+            if reader.read(&mut bytes)? == 0 {
                 break;
             }
-            if let Some(b'<') = self.buf.pop() {
-                self.handle_content();
-                self.buf.clear();
-                // FIXME: '>' can also be in quoted strings
-                if reader.read_until(b'>', &mut self.buf)? == 0 {
-                    break;
-                }
-                if let Some(b'>') = self.buf.pop() {
-                    if let Ok(text) = str::from_utf8(&self.buf) {
-                        let mut parts = text.trim().split_whitespace();
-                        if let Some(elem) = parts.next() {
-                            if elem.ends_with('/')
-                                || NON_CLOSING
-                                    .iter()
-                                    .any(|tag| elem.starts_with(tag))
-                            {
-                                continue;
-                            }
-                            if elem.starts_with('/') {
-                                if let Some((pe, _d)) = self.stack.pop() {
-                                    if elem[1..] != pe {
-                                        eprintln!("tag: {elem} != {pe}");
-                                    }
-                                } else {
-                                    eprintln!("stack empty!");
-                                }
-                            } else {
-                                let displayed = !NON_DISPLAYED.contains(&elem);
-                                let hidden = parts.any(is_class_hidden);
-                                let display = displayed && !hidden;
-                                self.stack.push((elem.to_string(), display));
-                            }
-                        }
-                    }
+            let b = bytes[0];
+            if quote.is_none() {
+                if b'\\' == b {
+                    quote = Some(b);
+                    continue;
+                } else if b'"' == b || b'\'' == b {
+                    buf.push(b);
+                    quote = Some(b);
+                    continue;
                 }
             }
+            if let Some(q) = quote {
+                if b'\\' == q {
+                    buf.push(b);
+                    quote = None;
+                    continue;
+                } else if q == b {
+                    buf.push(b);
+                    quote = None;
+                    continue;
+                }
+            }
+            if b'>' == b {
+                if let Some((last, _)) = self.stack.last() {
+                    if last.as_str() == "style" && !buf.starts_with(b"style") {
+                        buf.push(b);
+                        continue;
+                    }
+                }
+                self.handle_element(&buf);
+                buf.clear();
+                continue;
+            }
+            if b'<' == b {
+                self.handle_content(&buf);
+                buf.clear();
+                continue;
+            }
+            buf.push(b);
         }
         Ok(())
+    }
+
+    /// Handle element
+    fn handle_element(&mut self, buf: &[u8]) {
+        let Ok(text) = str::from_utf8(&buf) else {
+            eprintln!("Invalid UTF-8: {buf:?}");
+            return;
+        };
+        if text.ends_with('/')
+            || NON_CLOSING.iter().any(|tag| text.starts_with(tag))
+        {
+            return;
+        }
+        let mut parts = text.trim().split_whitespace();
+        let Some(elem) = parts.next() else {
+            eprintln!("Empty element!");
+            return;
+        };
+        if elem.starts_with('/') {
+            if let Some((pe, _d)) = self.stack.pop() {
+                if elem[1..] != pe {
+                    eprintln!("tag: {elem} != {pe}");
+                }
+            } else {
+                eprintln!("stack empty!");
+            }
+        } else {
+            let displayed = !NON_DISPLAYED.contains(&elem);
+            let hidden = parts.any(is_class_hidden);
+            let display = displayed && !hidden;
+            self.stack.push((elem.to_string(), display));
+        }
+    }
+
+    /// Handle content
+    fn handle_content(&self, buf: &[u8]) {
+        if self.is_content_displayed() {
+            let Ok(text) = str::from_utf8(&buf) else {
+                eprintln!("Invalid UTF-8: {buf:?}");
+                return;
+            };
+            let text = text.trim();
+            if !text.is_empty() {
+                println!("{}", decode_html_entities(text));
+            }
+        }
     }
 }
 
