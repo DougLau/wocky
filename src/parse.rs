@@ -15,7 +15,7 @@ pub enum Chunk {
 }
 
 /// Splitter for separating text into characters
-struct CharSplitter<R: BufRead> {
+pub struct CharSplitter<R: BufRead> {
     /// Remaining bytes of underlying reader
     bytes: Bytes<R>,
     /// Current unicode UTF-8 code
@@ -39,7 +39,7 @@ where
     R: BufRead,
 {
     /// Create a new char splitter
-    fn new(r: R) -> Self {
+    pub fn new(r: R) -> Self {
         CharSplitter {
             bytes: r.bytes(),
             code: Vec::with_capacity(4),
