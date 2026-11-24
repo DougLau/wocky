@@ -17,6 +17,8 @@ Australia:N.n
 Bolognese:A
 Celsius:A
 Christmas:N.n
+Christological:A
+Christology:N
 Darwinian:A
 December:N.n,-rs,Dec
 Dr:N.n
@@ -4120,6 +4122,7 @@ archosaur:N
 archosaurian:A
 archosaurian:N
 archpriest:N
+archrival:N
 archway:N
 archæbacterium:N,-ia
 archæologic:A
@@ -9726,7 +9729,7 @@ burlily:Av
 burliness:N
 burly:A.c
 burn:N
-burn:V,-ns,-ning,-nt,-ned
+burn:V,-ns,-ning,-ned,-nt
 burnable:A
 burned:A
 burner:N
@@ -12579,6 +12582,7 @@ chromatography:N
 chrome:N
 chrome:V
 chromesthesia:N
+chrominance:N
 chromite:N
 chromium:N
 chromo:N
@@ -15123,6 +15127,7 @@ contextualize:V.z
 contextually:Av
 contiguity:N
 contiguous:A
+contiguously:Av
 contiguousness:N
 continence:N
 continency:N
@@ -18488,8 +18493,10 @@ demijohn:N
 demilitarize:V.z
 demimondaine:N
 demimonde:N
+demine:V
 demineralization:N.z
 demineralize:V.z
+demining:N
 demise:N
 demisemiquaver:N
 demist:V
@@ -20529,6 +20536,8 @@ ditzy:A.c
 diuresis:N
 diuretic:N
 diurnal:A
+diurnal:N
+diurnally:Av
 diva:N
 divagate:V
 divagation:N
@@ -26504,6 +26513,7 @@ fluvastatin:N
 fluvial:A
 flux:N
 flux:V
+fluxgate:N
 fluxion:N
 fluxmeter:N
 fly:A.c
@@ -29327,6 +29337,7 @@ graded:A
 grader:N
 gradient:N
 grading:N
+gradiometer:N
 gradual:A
 gradual:N
 gradualism:N
@@ -38627,6 +38638,7 @@ licensee:N
 licenser:N
 licensure:N
 licentiate:N
+licentiateship:N
 licentious:A
 licentiously:Av
 licentiousness:N
@@ -41802,6 +41814,7 @@ microgliacyte:N
 microgram:N
 micrograph:N
 micrography:N
+microgravity:N
 microgroove:N
 microlight:N
 microloan:N
@@ -44166,6 +44179,7 @@ nationwide:A
 nationwide:Av
 native:A
 native:N
+natively:Av
 nativeness:N
 nativism:N
 nativist:A
@@ -45452,6 +45466,7 @@ nonresiny:A
 nonresistance:N
 nonresistant:A
 nonresonant:A
+nonresponsive:A
 nonrestrictive:A
 nonreticulate:A
 nonretractable:A
@@ -47465,6 +47480,7 @@ overbuild:V,-ds,-ding,-lt
 overburden:N
 overburden:V
 overburdened:A
+overburn:V,-ns,-ning,-ned,-nt
 overbusy:A.c
 overbuy:V,-ys,-ying,-bought
 overcall:N
@@ -53950,6 +53966,7 @@ punchbag:N
 punchball:N
 punchboard:N
 punchbowl:N
+punchcutter:N
 puncheon:N
 puncher:N
 punchline:N
@@ -55460,6 +55477,7 @@ rebus:N
 rebut:V
 rebuttal:N
 rebutter:N
+rebuy:V
 recalcitrance:N
 recalcitrancy:N
 recalcitrant:A
@@ -55639,6 +55657,7 @@ reconvict:V
 recopy:V
 record:N
 record:V
+recordable:A
 recorded:A
 recorder:N
 recording:N
@@ -56062,6 +56081,8 @@ regional:A
 regionalism:N
 regionalist:N
 regionalistic:A
+regionalization:N.z
+regionalize:V.z
 regionally:Av
 register:N
 register:V
@@ -56443,6 +56464,7 @@ renumber:V
 renunciant:A
 renunciation:N
 renunciative:A
+reoffend:V
 reopen:V
 reorder:V
 reordering:N
@@ -56822,6 +56844,7 @@ resourceful:A
 resourcefully:Av
 resourcefulness:N
 resourceless:A
+resourcing:N
 respect:N
 respect:V
 respectability:N
@@ -65885,7 +65908,7 @@ sunblind:N
 sunblock:N
 sunbonnet:N
 sunburn:N
-sunburn:V
+sunburn:V,-ns,-ning,-ned,-nt
 sunburned:A
 sunburnt:A
 sunburst:A
@@ -68710,6 +68733,7 @@ tingle:N
 tingle:V
 tingling:A
 tingling:N
+tingly:A
 tininess:N
 tink:V
 tinker:N,-rs,-kler,-klers
@@ -70705,6 +70729,9 @@ typographic:A
 typographical:A
 typographically:Av
 typography:N
+typological:A
+typologically:A
+typologist:N
 typology:N
 typosquatting:N
 tyramine:N
