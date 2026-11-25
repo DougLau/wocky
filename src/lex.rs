@@ -1,3 +1,4 @@
+use crate::argot::Argot;
 use crate::word::Lexeme;
 use std::collections::HashMap;
 use std::sync::LazyLock;
@@ -8,13 +9,16 @@ static LEXICON: LazyLock<Lexicon> = LazyLock::new(make_builtin);
 /// Make builtin lexicon
 fn make_builtin() -> Lexicon {
     let mut lex = Lexicon::default();
-    for (i, line) in include_str!("../res/english.csv").lines().enumerate() {
-        match Lexeme::try_from(line) {
-            Ok(word) => {
-                // FIXME: set the argot
-                lex.insert(word);
+    for argot in Argot::all() {
+        for (i, line) in argot.csv().lines().enumerate() {
+            match Lexeme::try_from(line) {
+                Ok(word) => {
+                    lex.insert(word.with_argot(Some(*argot)));
+                }
+                Err(_) => {
+                    panic!("Bad word in {argot:?} csv:{} `{line}`", i + 1)
+                }
             }
-            Err(_) => panic!("Bad word on line {}: `{line}`", i + 1),
         }
     }
     lex

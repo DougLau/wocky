@@ -1,8 +1,8 @@
 /// Argot (dialect, jargon or vernacular)
 #[derive(Clone, Copy, Debug, Eq, PartialEq, PartialOrd, Ord, Hash)]
 pub enum Argot {
-    /// Normal, everyday
-    Normal,
+    /// Common, everyday
+    Common,
     /// Legal jargon
     Legal,
     /// Scientific jargon
@@ -22,11 +22,28 @@ pub enum Argot {
 }
 
 impl Argot {
+    /// Get all argots
     pub fn all() -> &'static [Self] {
         use Argot::*;
         &[
-            Normal, Legal, Scientific, Computing, Botanical, Medical,
+            Common, Legal, Scientific, Computing, Botanical, Medical,
             Offensive, Literary, Archaic,
         ]
+    }
+
+    /// Get argot CSV as a string slice
+    pub const fn csv(self) -> &'static str {
+        use Argot::*;
+        match self {
+            Common => include_str!("../res/common.csv"),
+            Legal => include_str!("../res/legal.csv"),
+            Scientific => include_str!("../res/scientific.csv"),
+            Computing => include_str!("../res/computing.csv"),
+            Botanical => include_str!("../res/botanical.csv"),
+            Medical => include_str!("../res/medical.csv"),
+            Offensive => include_str!("../res/offensive.csv"),
+            Literary => include_str!("../res/literary.csv"),
+            Archaic => include_str!("../res/archaic.csv"),
+        }
     }
 }

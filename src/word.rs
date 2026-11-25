@@ -249,8 +249,9 @@ impl fmt::Display for Lexeme {
 
 impl Lexeme {
     /// Set the argot
-    pub fn with_argot(&mut self, argot: Option<Argot>) {
+    pub fn with_argot(mut self, argot: Option<Argot>) -> Self {
         self.argot = argot;
+        self
     }
 
     /// Get the argot
