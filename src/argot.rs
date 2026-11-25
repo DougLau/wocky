@@ -1,3 +1,5 @@
+use std::str::FromStr;
+
 /// Argot (dialect, jargon or vernacular)
 #[derive(Clone, Copy, Debug, Eq, PartialEq, PartialOrd, Ord, Hash)]
 pub enum Argot {
@@ -19,6 +21,26 @@ pub enum Argot {
     Literary,
     /// Archaic (rarely used any more)
     Archaic,
+}
+
+impl FromStr for Argot {
+    type Err = ();
+
+    fn from_str(s: &str) -> Result<Argot, ()> {
+        use Argot::*;
+        match s {
+            "common" => Ok(Common),
+            "legal" => Ok(Legal),
+            "scientific" => Ok(Scientific),
+            "computing" => Ok(Computing),
+            "botanical" => Ok(Botanical),
+            "medical" => Ok(Medical),
+            "offensive" => Ok(Offensive),
+            "literary" => Ok(Literary),
+            "archaic" => Ok(Archaic),
+            _ => Err(()),
+        }
+    }
 }
 
 impl Argot {

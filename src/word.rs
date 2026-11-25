@@ -48,8 +48,6 @@ pub enum WordAttr {
 /// Word Lexeme
 #[derive(Clone, Eq, Hash, Ord, PartialEq, PartialOrd)]
 pub struct Lexeme {
-    /// Argot (dialect/jargon)
-    argot: Option<Argot>,
     /// Lemma word form
     lemma: String,
     /// Word class
@@ -60,6 +58,8 @@ pub struct Lexeme {
     irregular_forms: Vec<String>,
     /// All forms
     forms: Vec<String>,
+    /// Argot (dialect/jargon)
+    argot: Option<Argot>,
 }
 
 impl TryFrom<&str> for WordClass {

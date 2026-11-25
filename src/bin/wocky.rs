@@ -1,6 +1,8 @@
 use anyhow::{Result, bail};
 use argh::FromArgs;
 use std::io::{IsTerminal, stdin};
+use std::str::FromStr;
+use wocky::argot::Argot;
 use wocky::hilite;
 use wocky::kind::Kind;
 use wocky::lex;
@@ -106,7 +108,8 @@ impl LexCmd {
         } else {
             // into_iter() sorts the entries
             for word in lex::builtin().clone().into_iter() {
-                if self.show_class(word.word_class()) {
+                if self.show_class(word.word_class()) && self.show_argot(&word)
+                {
                     println!("{word:?}");
                 }
             }
@@ -127,6 +130,19 @@ impl LexCmd {
                         }
                         Err(_) => return false,
                     }
+                }
+                false
+            }
+            None => true,
+        }
+    }
+
+    /// Check if a word argot should be shown
+    fn show_argot(&self, word: &Lexeme) -> bool {
+        match &self.argot {
+            Some(a) => {
+                if let Ok(argot) = Argot::from_str(a) {
+                    return Some(argot) == word.argot();
                 }
                 false
             }
