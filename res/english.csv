@@ -3991,6 +3991,7 @@ aragonite:N
 arak:N
 aralia:N
 arame:N
+aramid:N
 araneidal:A
 araneidan:A
 arariba:N
@@ -4332,9 +4333,6 @@ arrowsmith:N
 arrowworm:N
 arrowy:A
 arroyo:N
-arse:N
-arse:V
-arsehole:N
 arsenal:N
 arsenate:N
 arsenic:N
@@ -4587,7 +4585,6 @@ aspirer:N
 aspirin:N
 aspiring:A
 asquint:A
-ass:N
 assagai:N
 assail:V
 assailability:N
@@ -4637,7 +4634,6 @@ asset:N
 asseverate:V
 asseveration:N
 asseverator:N
-asshole:N
 assibilate:V
 assibilation:N
 assiduity:N
@@ -5867,6 +5863,7 @@ ballistic:A
 ballistics:N.p
 ballistocardiogram:N
 ballock:N
+ballonet:N
 balloon:N
 balloon:V
 balloonfish:N
@@ -6349,7 +6346,6 @@ batrachian:A
 batrachian:N
 batrachomyomachia:N
 bats:A
-batshit:A
 batsman:N,-men
 battalion:N
 batten:N
@@ -7615,7 +7611,6 @@ biter:N
 bitewing:N
 biting:A
 bitingly:Av
-bitmap:N
 bitok:N
 bitstock:N
 bitstream:N
@@ -9580,9 +9575,6 @@ bullpen:N
 bullring:N
 bullrush:N
 bullseye:N
-bullshit:N
-bullshit:V
-bullshitter:N
 bullshot:N
 bullterrier:N
 bullwhip:N
@@ -12203,7 +12195,6 @@ chickenfeed:N
 chickenfight:V
 chickenhearted:A
 chickenpox:N
-chickenshit:N
 chickeree:N
 chickpea:N
 chickweed:N
@@ -13029,7 +13020,8 @@ claver:V
 clavichord:N
 clavicle:N
 clavier:N
-clavus:N
+clavis:N,-ves,-ses
+clavus:N,-vi
 claw:N
 claw:V
 clawback:N
@@ -13544,7 +13536,6 @@ cockroach:N
 cockscomb:N
 cocksfoot:N
 cockspur:N
-cocksucker:N
 cocksure:A
 cocksureness:N
 cocktail:N
@@ -14163,6 +14154,9 @@ communism:N
 communist:A
 communist:N
 communistic:A
+communitarian:A
+communitarian:N
+communitarianism:N
 community:N
 communization:N.z
 communize:V.z
@@ -15479,6 +15473,8 @@ coprolalia:N
 coprolith:N
 coprophagia:N
 coprophagy:N
+coprophilia:N
+coprophiliac:N
 copse:N
 copter:N
 copula:N,-as,-ae
@@ -17022,8 +17018,6 @@ cunnilingus:N
 cunning:A
 cunning:N
 cunningly:Av
-cunt:N
-cunty:A.c
 cup:N
 cup:V
 cupbearer:N
@@ -19440,7 +19434,6 @@ diddle:V
 diddler:N
 diddley:N
 diddly:N
-diddlyshit:N
 diddlysquat:N
 diddums:I
 didgeridoo:N
@@ -20730,7 +20723,6 @@ dogmatize:V.z
 dognap:V
 dognapper:N
 dogsbody:N
-dogshit:N
 dogsled:N
 dogtooth:N,dogteeth
 dogtrot:N
@@ -23091,7 +23083,6 @@ enrollment:N
 enrolment:N
 ensconce:V
 ensemble:N
-enshittification:N
 enshrine:V
 enshrinement:N
 enshroud:V
@@ -24823,10 +24814,8 @@ faff:N
 fag:N
 fag:V
 fagged:A
-faggot:N
-faggot:V
-fagot:N
-fagot:V
+fagot:N,-ts,faggot,faggots
+fagot:V,-ts,-ting,-ted,faggots,faggoting,faggoted
 faience:N
 fail:V
 failed:A
@@ -24968,6 +24957,7 @@ fancywork:N
 fandango:N
 fandom:N
 fanfare:N
+fanfic:N
 fang:N
 fanged:A
 fangirl:N
@@ -26277,6 +26267,8 @@ flight:V
 flighted:A
 flightiness:N
 flightless:A
+flightseeing:N
+flightseer:N
 flighty:A.c
 flimflam:N
 flimflam:V
@@ -26519,6 +26511,7 @@ fluxmeter:N
 fly:A.c
 fly:N
 fly:V,flies,flying,flew,flown
+flyable:A
 flyaway:A
 flyblown:A
 flybridge:N
@@ -26679,6 +26672,7 @@ foot:V
 footage:N
 football:N
 footballer:N
+footballing:N
 footbath:N
 footboard:N
 footbridge:N
@@ -26968,6 +26962,7 @@ formidably:Av
 formless:A
 formlessly:Av
 formlessness:N
+formline:N
 formol:N
 formula:N,-læ,-ae,-as
 formulaic:A
@@ -27549,14 +27544,6 @@ frying:N
 frypan:N
 fthm:N
 fuchsia:N
-fuck:N
-fuck:V
-fucker:N
-fuckhead:N
-fucking:A
-fucking:Av
-fucking:N
-fuckup:N
 fucoid:N
 fucus:N
 fuddle:V
@@ -28683,11 +28670,10 @@ girdle:V
 girl:N
 girlfriend:N
 girlhood:N
-girlie:A.c
+girlie:A.c,-ly,-er,-est
 girlish:A
 girlishly:Av
 girlishness:N
-girly:A.c
 giro:N
 girt:V
 girth:N
@@ -29208,7 +29194,6 @@ googleable:A
 googly:N
 googol:N
 googolplex:N
-gook:N
 goon:N
 gooney:N
 goonie:N
@@ -30180,10 +30165,6 @@ gynogenesis:N
 gynophobia:N
 gynophore:N
 gynostegium:N,-ia
-gyp:N
-gyp:V
-gypper:N
-gypster:N
 gypsum:N
 gypsy:N
 gypsyweed:N
@@ -30688,6 +30669,7 @@ hardliner:N
 hardly:Av
 hardness:N
 hardpan:N
+hardpoint:N
 hardscrabble:A
 hardship:N
 hardstand:N
@@ -32351,7 +32333,6 @@ horseplay:N
 horsepond:N
 horsepower:N
 horseradish:N
-horseshit:N
 horseshoe:N
 horseshoe:V
 horseshoer:N
@@ -35438,6 +35419,7 @@ interesting:A
 interestingly:Av
 interestingness:N
 interface:N
+interface:V
 interfacial:A
 interfacing:N
 interfaith:A
@@ -36242,6 +36224,7 @@ itemize:V.z
 iterate:V
 iteration:N
 iterative:A
+iteratively:Av
 iterator:N
 itinerant:A
 itinerant:N
@@ -38613,8 +38596,10 @@ liberation:N
 liberator:N
 libertarian:N
 libertarianism:N
+libertinage:N
 libertine:A
 libertine:N
+libertinism:N
 liberty:N
 libidinal:A
 libidinous:A
@@ -40502,6 +40487,8 @@ manzanita:N
 manège:N
 manœuver:N
 manœuver:V
+manœuverability:N
+manœuverable:A
 manœuvrability:N
 manœuvrable:A
 manœuvre:N
@@ -40755,6 +40742,7 @@ massively:Av
 massiveness:N
 massé:N
 mast:N
+mast:V
 mastaba:N
 mastabah:N
 mastalgia:N
@@ -41185,6 +41173,7 @@ megahertz:N
 megahit:N
 megakaryocyte:N
 megakaryocytic:A
+megaliter:N,-rs,-tre,-tres
 megalith:N
 megalithic:A
 megaloblast:N
@@ -41315,7 +41304,9 @@ memorability:N
 memorable:A
 memorably:Av
 memorandum:N,-da,-ms
+memorial:A
 memorial:N
+memorialist:N
 memorialization:N.z
 memorialize:V.z
 memorization:N.z
@@ -41843,6 +41834,7 @@ microphone:N
 microphoning:N
 microphotometer:N
 microplastic:N
+micropolitan:A
 microprocessor:N
 micropsia:N
 micropsy:N
@@ -42096,6 +42088,7 @@ milquetoast:A
 milquetoast:N
 milt:N
 miltomate:N
+mim:A
 mime:N
 mime:V
 mimeo:N
@@ -42129,8 +42122,6 @@ minded:A
 mindedly:Av
 mindedness:N
 minder:N
-mindfuck:N
-mindfuck:V
 mindful:A
 mindfully:Av
 mindfulness:N
@@ -43221,8 +43212,6 @@ mother:N
 mother:V
 motherboard:N
 motherese:N
-motherfucker:N
-motherfucking:A
 motherhood:N
 motherland:N
 motherless:A
@@ -43710,6 +43699,9 @@ musculoskeletal:A
 musculus:N
 muse:N
 muse:V
+museological:A
+museologist:N
+museology:N
 muser:N
 musette:N
 museum:N
@@ -43935,6 +43927,7 @@ myrrh:N
 myrtle:N
 myself:Pn
 mysophilia:N
+mysophiliac:N
 mysophobia:N
 mysophobic:A
 mysterious:A
@@ -44811,12 +44804,6 @@ niff:N
 niffy:A.c
 nifty:A.c
 nigella:N
-nigga:N
-niggard:N
-niggardliness:N
-niggardly:A.c
-niggardness:N
-nigger:N
 niggle:V
 niggler:N
 niggling:A
@@ -45801,6 +45788,7 @@ noxiptiline:N
 nozzle:N
 nu:N
 nuance:N
+nuanced:A
 nub:N
 nubbin:N
 nubbiness:N
@@ -45976,6 +45964,7 @@ nymphet:N
 nympho:N
 nympholepsy:N
 nympholept:N
+nympholeptic:A
 nymphomania:N
 nymphomaniac:A
 nymphomaniac:N
@@ -46732,9 +46721,6 @@ operative:A
 operative:N
 operatively:Av
 operator:N
-operculate:A
-operculated:A
-operculum:N
 operetta:N
 operon:N
 operose:A
@@ -48324,7 +48310,7 @@ panicle:N
 panicled:A
 paniculate:A
 panini:N
-panjandrum:N
+panjandrum:N,-ms,-ra
 pannier:N
 pannikin:N
 panocha:N
@@ -52122,6 +52108,8 @@ pothos:N,-s
 pothouse:N
 pothunter:N
 potion:N
+potlatch:N
+potlatch:V
 potluck:N
 potman:N,-men
 potomania:N
@@ -56368,7 +56356,9 @@ remitment:N
 remittal:N
 remittance:N
 remittent:A
+remix:N
 remix:V
+remixer:N
 remnant:N
 remodel:V,-ls,-ling,-lling,-led,-lled
 remodeled:A
@@ -56737,6 +56727,7 @@ resect:V
 resection:N
 reseda:N
 reseed:V
+reselect:V
 resell:V,-ls,-ling,resold
 reseller:N
 resemblance:N
@@ -60895,25 +60886,8 @@ shirtwaist:N
 shirtwaister:N
 shirty:A.c
 shisha:N
-shit:N
-shit:V
-shitcoin:N
-shite:N
-shitfaced:A
-shithead:N
-shitless:A
-shitlist:N
-shitload:N
-shitpost:N
-shitpost:V
-shitposter:N
-shittah:N
-shitter:N
-shittim:N
+shittah:N,-hs,-tim
 shittimwood:N
-shitting:N
-shitty:A.c
-shitwork:N
 shiv:N
 shiva:N
 shivah:N
@@ -61826,7 +61800,7 @@ skylark:V
 skylight:N
 skyline:N
 skyrocket:N
-skyrocket:V
+skyrocket:V,-ts,-ting,-ted
 skysail:N
 skyscraper:N
 skywalk:N
@@ -63514,8 +63488,6 @@ sphingine:A
 sphinx:N,-xes,-nges
 sphygmomanometer:N
 sphynx:N
-spic:A
-spic:N
 spic-and-span:A
 spicate:A
 spiccato:N
@@ -66108,6 +66080,7 @@ supersedure:N
 supersensitive:A
 supersensitized:A.z
 supersession:N
+superset:N
 supersize:A
 supersize:V
 superslasher:N
@@ -66583,7 +66556,7 @@ switchman:N,-men
 switchover:N
 swither:N
 swivel:N
-swivel:V
+swivel:V,-ls,-ling,-lling,-led,-lled
 swivet:N
 swiz:N
 swizz:N
@@ -70582,7 +70555,6 @@ twang:N
 twang:V
 twanger:N
 twangy:A.c
-twat:N
 twayblade:N
 tweak:N
 tweak:V
@@ -71038,6 +71010,7 @@ unattainable:A
 unattainableness:N
 unattainably:Av
 unattended:A
+unattested:A
 unattired:A
 unattractive:A
 unattractively:Av
@@ -71362,6 +71335,8 @@ uncontroversially:Av
 unconventional:A
 unconventionality:N
 unconventionally:Av
+unconversion:N
+unconvert:V
 unconverted:A
 unconvertible:A
 unconvinced:A
@@ -73730,6 +73705,8 @@ utmost:A
 utmost:N
 utopia:N
 utopian:A
+utopianism:N
+utopianist:N
 utricle:N
 utriculus:N
 utter:A
@@ -73801,6 +73778,7 @@ vagary:N
 vagile:A
 vagina:N,-as,-ae
 vaginal:A
+vaginally:Av
 vaginismus:N
 vaginitis:N
 vaginocele:N
@@ -74775,6 +74753,8 @@ voguish:A
 voice:N
 voice:V
 voiced:A
+voiceful:A
+voicefulness:N
 voiceless:A
 voicelessly:Av
 voicelessness:N
@@ -76455,7 +76435,6 @@ wooly:N
 woozily:Av
 wooziness:N
 woozy:A.c
-wop:N
 word:N
 word:V
 wordage:N
@@ -76689,6 +76668,7 @@ wryness:N
 wulfenite:N
 wunderkind:N,-der
 wurst:N
+wushu:N
 wuss:N
 wussy:A.c
 wussy:N

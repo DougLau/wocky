@@ -1,5 +1,9 @@
+agentic:A
+bitmap:N
+bitmapped:A
 bitrate:N
 filesystem:N
 hardsub:N
 hardsub:V
+opcode:N
 plugin:N

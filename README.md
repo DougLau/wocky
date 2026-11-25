@@ -35,7 +35,7 @@ from a file.  With no additional options, a summary of token kinds is listed:
 ```
 > wocky read < Dr_Jeckyll_And_Mr_Hyde.txt
 
- 3915 l Lexicon
+ 3916 l Lexicon
     1 f Foreign
     4 o Ordinal
     0 r Roman
@@ -43,7 +43,7 @@ from a file.  With no additional options, a summary of token kinds is listed:
    12 a Acronym
    37 p Proper
    16 s Symbol
-    7 u Unknown
+    6 u Unknown
 ```
 
 Comma-separated options can be added to list all tokens of a kind.
