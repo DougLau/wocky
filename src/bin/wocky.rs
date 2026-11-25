@@ -13,27 +13,47 @@ use yansi::{Paint, Style};
 struct Args {
     #[argh(subcommand)]
     cmd: Option<SubCommand>,
+    /// word to look up
+    #[argh(positional)]
+    word: Option<String>,
 }
 
 /// Sub-command enum
 #[derive(FromArgs, Debug, PartialEq)]
 #[argh(subcommand)]
 enum SubCommand {
-    Hilite(HiliteCmd),
+    Jabber(JabberCmd),
+    Lex(LexCmd),
     Read(ReadCmd),
-    Word(WordCmd),
-    Jabber(Jabber),
 }
 
-/// Hilight text from stdin
+/// Generate jabber (nonsense) text
 #[derive(FromArgs, Debug, PartialEq)]
-#[argh(subcommand, name = "hl")]
-struct HiliteCmd {}
+#[argh(subcommand, name = "jb")]
+struct JabberCmd {}
 
-/// Read text from stdin, grouping tokens by kind
+/// Display lexicon
 #[derive(FromArgs, Debug, PartialEq)]
-#[argh(subcommand, name = "read")]
+#[argh(subcommand, name = "lx")]
+struct LexCmd {
+    /// argot (dialect)
+    #[argh(option, short = 'a')]
+    argot: Option<String>,
+    /// word classes (A,Av,C,D,I,N,P,Pn,V)
+    #[argh(option, short = 'c')]
+    classes: Option<String>,
+    /// list all word forms
+    #[argh(switch, short = 'f')]
+    forms: bool,
+}
+
+/// Read text from stdin
+#[derive(FromArgs, Debug, PartialEq)]
+#[argh(subcommand, name = "rd")]
 struct ReadCmd {
+    /// highlight words by class
+    #[argh(switch, short = 'h')]
+    highlight: bool,
     /// token kinds (l,f,o,r,n,a,p,s,u,A)
     #[argh(positional)]
     kinds: Option<String>,
@@ -48,39 +68,70 @@ struct ReadCmd {
     word: bool,
 }
 
-/// Lookup words from lexicon
-#[derive(FromArgs, Debug, PartialEq)]
-#[argh(subcommand, name = "word")]
-struct WordCmd {
-    /// word classes (A,Av,C,D,I,N,P,Pn,V)
-    #[argh(option, short = 'c')]
-    classes: Option<String>,
-    /// list all word forms
-    #[argh(switch, short = 'f')]
-    forms: bool,
-    /// word to lookup
-    #[argh(positional)]
-    word: Option<String>,
+impl JabberCmd {
+    /// Print jabber (nonsense)
+    fn run(self) -> Result<()> {
+        let nouns: Vec<_> = lex::builtin()
+            .iter()
+            .filter(|w| w.word_class() == WordClass::Noun)
+            .collect();
+        let verbs: Vec<_> = lex::builtin()
+            .iter()
+            .filter(|w| w.word_class() == WordClass::Verb)
+            .collect();
+        let subject = choose_word(&nouns[..]).lemma();
+        let verb = choose_word(&verbs[..]).lemma();
+        println!("{subject} {verb}");
+        Ok(())
+    }
 }
 
-/// Generate jabber (nonsense) text
-#[derive(FromArgs, Debug, PartialEq)]
-#[argh(subcommand, name = "jabber")]
-struct Jabber {}
+/// Choose a word from a slice
+fn choose_word<'a>(words: &[&'a Lexeme]) -> &'a Lexeme {
+    let mut n = words.len();
+    n = fastrand::usize(1..=n);
+    n = fastrand::usize(..n);
+    words.get(n).unwrap()
+}
 
-impl HiliteCmd {
+impl LexCmd {
     /// Run command
     fn run(self) -> Result<()> {
-        let stdin = stdin();
-        if stdin.is_terminal() {
-            eprintln!(
-                "{0} stdin must be redirected {0}",
-                "!!!".bright_yellow()
-            );
-            return Ok(());
+        if self.forms {
+            let mut forms: Vec<_> = lex::builtin().forms().collect();
+            forms.sort();
+            for form in forms {
+                println!("{form}");
+            }
+        } else {
+            // into_iter() sorts the entries
+            for word in lex::builtin().clone().into_iter() {
+                if self.show_class(word.word_class()) {
+                    println!("{word:?}");
+                }
+            }
         }
-        hilite::hilite_text(stdin.lock())?;
         Ok(())
+    }
+
+    /// Check if a word class should be shown
+    fn show_class(&self, wc: WordClass) -> bool {
+        match &self.classes {
+            Some(classes) => {
+                for cl in classes.split(',') {
+                    match WordClass::try_from(cl) {
+                        Ok(cl) => {
+                            if cl == wc {
+                                return true;
+                            }
+                        }
+                        Err(_) => return false,
+                    }
+                }
+                false
+            }
+            None => true,
+        }
     }
 }
 
@@ -93,6 +144,10 @@ impl ReadCmd {
                 "{0} stdin must be redirected {0}",
                 "!!!".bright_yellow()
             );
+            return Ok(());
+        }
+        if self.highlight {
+            hilite::hilite_text(stdin.lock())?;
             return Ok(());
         }
         let kinds = self.parse_kinds()?;
@@ -170,107 +225,43 @@ impl ReadCmd {
     }
 }
 
-impl WordCmd {
-    /// Run command
-    fn run(self) -> Result<()> {
-        if self.forms {
-            let mut forms: Vec<_> = lex::builtin().forms().collect();
-            forms.sort();
-            for form in forms {
-                println!("{form}");
-            }
-        } else if let Some(word) = &self.word {
-            self.lookup(word)?;
-        } else {
-            // into_iter() sorts the entries
-            for word in lex::builtin().clone().into_iter() {
-                if self.show_class(word.word_class()) {
-                    println!("{word:?}");
+/// Lookup a word form
+fn lookup_word(word: &str) {
+    let lex = lex::builtin();
+    if lex.contains(word) {
+        for w in lex.word_entries(word) {
+            for f in w.forms() {
+                let mut style = if f == word {
+                    Style::new().bright_yellow().italic()
+                } else {
+                    Style::new()
+                };
+                if f == w.lemma() {
+                    style = style.bold();
+                    print!("{}:{} ", f.paint(style), w.word_class().bold());
+                } else {
+                    print!("{} ", f.paint(style));
                 }
             }
+            println!();
         }
-        Ok(())
-    }
-
-    /// Check if a word class should be shown
-    fn show_class(&self, wc: WordClass) -> bool {
-        match &self.classes {
-            Some(classes) => {
-                for cl in classes.split(',') {
-                    match WordClass::try_from(cl) {
-                        Ok(cl) => {
-                            if cl == wc {
-                                return true;
-                            }
-                        }
-                        Err(_) => return false,
-                    }
-                }
-                false
-            }
-            None => true,
-        }
-    }
-
-    /// Lookup a word form
-    fn lookup(&self, word: &str) -> Result<()> {
-        let lex = lex::builtin();
-        if lex.contains(word) {
-            for w in lex.word_entries(word) {
-                for f in w.forms() {
-                    let mut style = if f == word {
-                        Style::new().bright_yellow().italic()
-                    } else {
-                        Style::new()
-                    };
-                    if f == w.lemma() {
-                        style = style.bold();
-                        print!("{}:{} ", f.paint(style), w.word_class().bold());
-                    } else {
-                        print!("{} ", f.paint(style));
-                    }
-                }
-                println!();
-            }
-        } else {
-            println!("`{word}` not found");
-        }
-        Ok(())
+    } else {
+        let style = Style::new().bright_yellow().italic();
+        eprintln!("`{}` not found", word.paint(style));
     }
 }
 
-/// Choose a word from a slice
-fn choose_word<'a>(words: &[&'a Lexeme]) -> &'a Lexeme {
-    let mut n = words.len();
-    n = fastrand::usize(1..=n);
-    n = fastrand::usize(..n);
-    words.get(n).unwrap()
-}
-
-/// Print jabber (nonsense)
-fn jabber() {
-    let nouns: Vec<_> = lex::builtin()
-        .iter()
-        .filter(|w| w.word_class() == WordClass::Noun)
-        .collect();
-    let verbs: Vec<_> = lex::builtin()
-        .iter()
-        .filter(|w| w.word_class() == WordClass::Verb)
-        .collect();
-    let subject = choose_word(&nouns[..]).lemma();
-    let verb = choose_word(&verbs[..]).lemma();
-    println!("{subject} {verb}")
-}
-
+/// Main entry point
 fn main() -> Result<()> {
     let args: Args = argh::from_env();
     match args.cmd {
-        Some(SubCommand::Hilite(cmd)) => cmd.run()?,
+        Some(SubCommand::Jabber(cmd)) => cmd.run()?,
+        Some(SubCommand::Lex(cmd)) => cmd.run()?,
         Some(SubCommand::Read(cmd)) => cmd.run()?,
-        Some(SubCommand::Word(cmd)) => cmd.run()?,
-        Some(SubCommand::Jabber(_)) => jabber(),
         None => {
-            if let Err(e) = Args::from_args(&["wocky"], &["--help"]) {
+            if let Some(word) = args.word {
+                lookup_word(&word);
+            } else if let Err(e) = Args::from_args(&["wocky"], &["--help"]) {
                 eprintln!("{}", e.output);
             }
         }

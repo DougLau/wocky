@@ -7,9 +7,8 @@ cargo install wocky
 
 ### Lexicon
 
-The `word` sub-command lists words from the built-in lexicon.
+The `lx` sub-command lists words from the built-in lexicon.
 
-- Looks up all entries matching the provided word
 - With no options, all entries are listed
 - The `-f` option lists all known word forms
 - The `-c` option filters words by class.  Provide a comma-separated list to
@@ -29,11 +28,15 @@ Option | Word Class
 
 ### Reading a Text
 
-The `read` sub-command reads UTF-8 text from `stdin`, which can be redirected
-from a file.  With no additional options, a summary of token kinds is listed:
+The `rd` sub-command reads UTF-8 text from `stdin`, which can be redirected
+from a file.
+
+The `-h` switch outputs the same text highlighted by word class.
+
+Without any options, a summary of token kinds is listed:
 
 ```
-> wocky read < Dr_Jeckyll_And_Mr_Hyde.txt
+> wocky rd < Dr_Jeckyll_And_Mr_Hyde.txt
 
  3916 l Lexicon
     1 f Foreign
@@ -61,6 +64,7 @@ Option | Kind    | Description
 `u`    | Unknown | Unknown (no other kind)
 `A`    | All     | All kinds
 
-### Highlighting
+## Word Lookup
 
-The `hl` sub-command adds highlighting to a text.
+If a word is provided instead of a sub-command, all entries matching that
+word in the lexicon will be printed.
