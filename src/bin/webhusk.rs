@@ -129,14 +129,14 @@ impl HtmlHusker {
         {
             return;
         }
-        let mut parts = text.trim().split_whitespace();
+        let mut parts = text.split_whitespace();
         let Some(tag) = parts.next() else {
             eprintln!("Empty element!");
             return;
         };
-        if tag.starts_with('/') {
+        if let Some(elem) = tag.strip_prefix('/') {
             while let Some((pe, _d)) = self.stack.pop() {
-                if tag[1..] == pe {
+                if elem == pe {
                     break;
                 }
             }
