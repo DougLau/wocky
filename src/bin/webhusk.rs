@@ -37,6 +37,7 @@ const NON_CLOSING: &[&str] =
 /// Non-displayed entity names
 const NON_DISPLAYED: &[&str] = &[
     "annotation",
+    "button",
     "figure",
     "footer",
     "form",
@@ -163,13 +164,17 @@ impl HtmlHusker {
 fn is_class_hidden(part: &str) -> bool {
     part.starts_with("class") && {
         part.contains("catlinks")
-            || part.contains("sidebar-list")
             || part.contains("infobox")
-            || part.contains("vector-menu")
-            || part.contains("references")
-            || part.contains("printfooter")
-            || part.contains("mw-reflink-text")
             || part.contains("mw-editsection")
+            || part.contains("mw-jump-link")
+            || part.contains("mw-reflink-text")
+            || part.contains("navbox")
+            || part.contains("noprint")
+            || part.contains("printfooter")
+            || part.contains("references")
+            || part.contains("sidebar-list")
+            || part.contains("vector-sticky-header")
+            || part.contains("vector-menu")
     }
 }
 
