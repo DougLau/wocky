@@ -2,8 +2,15 @@ agentic:A
 bitmap:N
 bitmapped:A
 bitrate:N
+duplex:V
+duplexer:N
 filesystem:N
 hardsub:N
 hardsub:V
+libre:A
+microsite:N
 opcode:N
 plugin:N
+reband:V
+refarm:V
+refarming:N

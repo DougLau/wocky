@@ -19,6 +19,8 @@ pub enum Argot {
     Offensive,
     /// Literary (rarely used in everyday speech)
     Literary,
+    /// Scottish dialect
+    Scottish,
     /// Archaic (rarely used any more)
     Archaic,
 }
@@ -37,6 +39,7 @@ impl FromStr for Argot {
             "medical" => Ok(Medical),
             "offensive" => Ok(Offensive),
             "literary" => Ok(Literary),
+            "scottish" => Ok(Scottish),
             "archaic" => Ok(Archaic),
             _ => Err(()),
         }
@@ -49,7 +52,7 @@ impl Argot {
         use Argot::*;
         &[
             Common, Legal, Scientific, Computing, Botanical, Medical,
-            Offensive, Literary, Archaic,
+            Offensive, Literary, Scottish, Archaic,
         ]
     }
 
@@ -65,6 +68,7 @@ impl Argot {
             Medical => include_str!("../res/medical.csv"),
             Offensive => include_str!("../res/offensive.csv"),
             Literary => include_str!("../res/literary.csv"),
+            Scottish => include_str!("../res/scottish.csv"),
             Archaic => include_str!("../res/archaic.csv"),
         }
     }

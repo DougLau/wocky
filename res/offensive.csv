@@ -44,6 +44,7 @@ mindfucker:N
 mindfucking:N
 motherfucker:N
 motherfucking:A
+nad:N
 nigga:N,-as,-az
 niggard:A
 niggard:N
@@ -53,7 +54,7 @@ niggardly:A.c
 niggardness:N
 nigger:N
 shit:N
-shit:V,shits,shitting,shat
+shit:V,-ts,-tting,shat
 shitcoin:N
 shite:N
 shitfaced:A
@@ -65,9 +66,9 @@ shitpost:N
 shitpost:V
 shitposter:N
 shitter:N
-shitty:A.c
 shittily:Av
 shittiness:N
+shitty:A.c
 shitwork:N
 spic:A
 spic:N
