@@ -3,7 +3,7 @@ use anyhow::Result;
 use core::str;
 use html_escape::decode_html_entities;
 use std::io::{BufRead, IsTerminal, stdin};
-use wocky::parse::CharSplitter;
+use wocky::parse::{CharSplitter, Chunk};
 
 /// Parsing context
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -103,6 +103,7 @@ impl HtmlHusker {
     where
         R: BufRead,
     {
+        let mut chu = None;
         let mut text = String::with_capacity(256);
         let mut context = Context::Html;
         for c in splitter {
@@ -113,7 +114,9 @@ impl HtmlHusker {
                 text.push(c);
             }
             if let (Context::Tag, Context::Html) = (prev, context) {
-                self.handle_element(&text);
+                if self.handle_element(&text) {
+                    chu = None;
+                }
                 if let Some((last, _)) = self.stack.last()
                     && last.as_str() == "style"
                 {
@@ -122,7 +125,7 @@ impl HtmlHusker {
                 text.clear();
             }
             if let (Context::Html, Context::Tag) = (prev, context) {
-                self.handle_content(&text);
+                chu = self.handle_content(text.trim(), chu);
                 text.clear();
             }
         }
@@ -130,16 +133,16 @@ impl HtmlHusker {
     }
 
     /// Handle element
-    fn handle_element(&mut self, text: &str) {
+    fn handle_element(&mut self, text: &str) -> bool {
         if text.ends_with('/')
             || NON_CLOSING.iter().any(|tag| text.starts_with(tag))
         {
-            return;
+            return false;
         }
         let mut parts = text.split_whitespace();
         let Some(tag) = parts.next() else {
             eprintln!("Empty element!");
-            return;
+            return false;
         };
         if let Some(elem) = tag.strip_prefix('/') {
             while let Some((pe, _d)) = self.stack.pop() {
@@ -147,21 +150,66 @@ impl HtmlHusker {
                     break;
                 }
             }
+            false
         } else {
             let displayed = !NON_DISPLAYED.contains(&tag);
             let hidden = parts.any(is_class_hidden);
             let display = displayed && !hidden;
             self.stack.push((tag.to_string(), display));
+            if display {
+                match tag {
+                    "p" => {
+                        println!("\n");
+                        true
+                    }
+                    "h1" => {
+                        print!("\n\n# ");
+                        true
+                    }
+                    "h2" => {
+                        print!("\n\n## ");
+                        true
+                    }
+                    "h3" => {
+                        print!("\n\n### ");
+                        true
+                    }
+                    "h4" => {
+                        print!("\n\n#### ");
+                        true
+                    }
+                    "h5" => {
+                        print!("\n\n##### ");
+                        true
+                    }
+                    "h6" => {
+                        print!("\n\n###### ");
+                        true
+                    }
+                    _ => false,
+                }
+            } else {
+                false
+            }
         }
     }
 
     /// Handle content
-    fn handle_content(&self, text: &str) {
-        if self.is_content_displayed() {
-            let text = text.trim();
-            if !text.is_empty() {
-                println!("{}", decode_html_entities(text));
+    fn handle_content(&self, text: &str, chu: Option<Chunk>) -> Option<Chunk> {
+        if self.is_content_displayed() && !text.is_empty() {
+            let text = decode_html_entities(text);
+            if let Some(pc) = chu
+                && let Some(fc) = text.chars().next()
+            {
+                let fchunk = Chunk::from_char(fc);
+                if let Some(sep) = pc.separator(fchunk) {
+                    print!("{sep}");
+                }
             }
+            print!("{text}");
+            text.chars().last().map(Chunk::from_char)
+        } else {
+            chu
         }
     }
 }

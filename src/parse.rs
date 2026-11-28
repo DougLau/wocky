@@ -3,15 +3,26 @@ use crate::kind::Kind;
 use crate::lex::{self, Lexicon, is_apostrophe};
 use std::io::{self, BufRead, Bytes};
 
+/// Chunk symbol padding
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum Pad {
+    /// No padding
+    Neither,
+    /// Left padding
+    Left,
+    /// Right padding
+    Right,
+}
+
 /// Character chunk types
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum Chunk {
-    /// Alphanumeric character or apostrophe text
-    Text,
-    /// Any non-`Text` displayable character
-    Symbol,
     /// Word boundary character (whitespace, control, etc.)
     Boundary,
+    /// Alphanumeric character or apostrophe text
+    Text,
+    /// A non-`Text` displayable character
+    Symbol(Pad),
 }
 
 /// Splitter for separating text into characters
@@ -84,15 +95,37 @@ where
     }
 }
 
+impl Pad {
+    /// Determine pad type of a single character
+    pub fn from_char(c: char) -> Self {
+        match c {
+            '(' | '[' | '{' | '«' | '‘' | '‚' | '“' | '‹' | '⁅' | '⁽' | '₍'
+            | '〈' => Pad::Left,
+            ')' | ']' | '}' | '»' | '’' | '‛' | '”' | '›' | '⁆' | '⁾' | '₎'
+            | '〉' | ',' | '.' | ';' | ':' => Pad::Right,
+            _ => Pad::Neither,
+        }
+    }
+}
+
 impl Chunk {
     /// Determine chunk type from a single character
-    fn from_char(c: char) -> Self {
+    pub fn from_char(c: char) -> Self {
         if is_boundary(c) {
             Chunk::Boundary
         } else if c.is_alphanumeric() || is_apostrophe(c) {
             Chunk::Text
         } else {
-            Chunk::Symbol
+            Chunk::Symbol(Pad::from_char(c))
+        }
+    }
+
+    /// Get separator between two chunks
+    pub fn separator(self, other: Self) -> Option<char> {
+        match (self, other) {
+            (Chunk::Symbol(Pad::Left), Chunk::Text) => None,
+            (Chunk::Text, Chunk::Symbol(Pad::Right)) => None,
+            _ => Some(' '),
         }
     }
 }
@@ -161,7 +194,7 @@ where
                     self.push_boundary(c);
                     return;
                 }
-                Chunk::Symbol => {
+                Chunk::Symbol(_) => {
                     if c == '-' {
                         // double dash means no more compound
                         if !self.text.is_empty() && !self.text.ends_with('-') {
@@ -203,7 +236,7 @@ where
 
     /// Push symbol chunk
     fn push_symbol(&mut self, c: char) {
-        self.push_chunk(Chunk::Symbol, String::from(c));
+        self.push_chunk(Chunk::Symbol(Pad::from_char(c)), String::from(c));
     }
 
     /// Push boundary chunk
@@ -224,7 +257,10 @@ where
         let mut first = true;
         for ch in txt.split('-') {
             if !first {
-                self.push_word(Chunk::Symbol, String::from('-'));
+                self.push_word(
+                    Chunk::Symbol(Pad::from_char('-')),
+                    String::from('-'),
+                );
             }
             self.push_word_check_contraction(ch);
             first = false;
