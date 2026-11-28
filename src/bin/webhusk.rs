@@ -51,13 +51,19 @@ const NON_DISPLAYED: &[&str] = &[
 
 impl Context {
     /// Should a char be included?
-    fn include(self, c: char) -> bool {
+    fn include(self, c: char) -> Option<char> {
         use Context::*;
         match (self, c) {
-            (SingleQuote | DoubleQuote, '<' | '>') => true,
-            (_, '<' | '>') => false,
-            (Css, _) => false,
-            _ => true,
+            (SingleQuote | DoubleQuote, '<' | '>') => Some(c),
+            (_, '<' | '>') => None,
+            (Css, _) => None,
+            _ => {
+                if c.is_whitespace() {
+                    Some(' ')
+                } else {
+                    Some(c)
+                }
+            }
         }
     }
 
@@ -103,7 +109,7 @@ impl HtmlHusker {
             let c = c?;
             let prev = context;
             context.handle_char(c);
-            if context.include(c) {
+            if let Some(c) = context.include(c) {
                 text.push(c);
             }
             if let (Context::Tag, Context::Html) = (prev, context) {
